@@ -1,3 +1,4 @@
+import getDirection from 'direction'
 import { lst } from "./misc.js"
 
 // BIDI HELPERS
@@ -208,7 +209,8 @@ let bidiOrdering = (function() {
 // false for lines that are fully left-to-right, and an array of
 // BidiSpan objects otherwise.
 export function getOrder(line, direction) {
+  const lineDirection = getDirection(line.text)
   let order = line.order
-  if (order == null) order = line.order = bidiOrdering(line.text, direction)
+  if (order == null) order = line.order = bidiOrdering(line.text, lineDirection === 'neutral' ? direction : lineDirection)
   return order
 }
