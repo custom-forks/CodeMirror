@@ -1,4 +1,6 @@
 import buble from 'rollup-plugin-buble';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 
 export default {
   banner: `// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -14,5 +16,9 @@ export default {
   format: "umd",
   dest: "lib/codemirror.js",
   moduleName: "CodeMirror",
-  plugins: [ buble({namedFunctionExpressions: false}) ]
+  plugins: [
+    buble({namedFunctionExpressions: false}),
+    resolve(),
+    commonjs(),
+  ]
 };
